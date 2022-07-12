@@ -1,2 +1,1 @@
-# javascript
-Projeto de MIDI online usando JS
+# Projeto de MIDI online usando JS
