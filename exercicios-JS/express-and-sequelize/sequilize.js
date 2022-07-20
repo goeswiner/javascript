@@ -2,7 +2,7 @@
 const Sequelize = require('sequelize');
 
 // Conectando com banco de dados teste, com usuário root e senha + host e tipo de database
-const sequelize = new Sequelize('meuApp', 'root', 'Tropico*19', {
+const sequelize = new Sequelize('meuApp', 'root', 'PASSWORD', {
     host: "localhost",
     dialect: 'mysql'
 })
