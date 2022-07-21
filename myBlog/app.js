@@ -5,6 +5,8 @@ const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path")
+const session = require("express-session");
+const flash = require("connect-flash");
 
 const app = express();
 
@@ -13,11 +15,28 @@ const admin = require('./routes/admin');
 
 // ---------------- Configurações -----------------
 
+// // Session
+app.use(session({
+    secret: "anysafetext",
+    resave: true,
+    saveUninitialized: true
+}));
+
+// // Flash
+app.use(flash());
+
+// // Middleware - variaveis globais
+app.use((req,res,next) => {
+    res.locals.success_msg = req.flash("success_msg")
+    res.locals.error_msg = req.flash("error_msg")
+    next();
+})
+
 // // Body Parser
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-// // Body Parser
+// // Handlebars
 app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
